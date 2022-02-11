@@ -1,0 +1,37 @@
+<div class="modal fade" tabindex="-1" [id]="modalName">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{title}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form [formGroup]="pessoaForm" (submit)="onSubmit(pessoaForm.value)">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="nome" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="nome" [value]="pessoa.nome" formControlName="nome" placeholder="Nome Completo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefone" class="form-label">Telefone</label>
+                        <input type="text" class="form-control" id="telefone" [value]="pessoa.telefone" formControlName="telefone" placeholder="Nº de Telefone">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" [value]="pessoa.email" formControlName="email" placeholder="nome@exemplo.com">
+                    </div>
+                    <div class="mb-3" *ngIf="!profissaoService.loading">
+                        <label for="profissao" class="form-label">Profissão</label>
+                        <select class="form-select" formControlName="profissao_id">
+                            <option selected value="0">Selecione a Profissão</option>
+                            <option *ngFor="let profissao of profissoes" value="{{profissao.id}}">{{profissao.descricao}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i></button>
+                    <button type="submit" class="btn btn-info" data-bs-dismiss="modal"><i class="fas fa-save"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

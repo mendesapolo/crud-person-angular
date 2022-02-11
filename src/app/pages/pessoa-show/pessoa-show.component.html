@@ -1,0 +1,42 @@
+<div *ngIf="!this.pessoaService.loading">
+    <div class="row">
+        <div class="col-md-8 m-auto">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-2"><i class="fa fa-user fa-4x"></i></div>
+                        <div class="col-sm-10 ml-2">
+                            <h6 class="card-title">Nome: <i>{{pessoa.nome || '---'}}</i></h6>
+                            <h6 class="card-title">Telefone: <i>{{pessoa?.telefone || '---'}}</i></h6>
+                            <h6 class="card-title">E-mail: <i>{{pessoa?.email || '---'}}</i></h6>
+                            <hr>
+                            <h6>Profissão: <span class="text-success">{{ pessoa?.profissao?.descricao || '---' }}</span></h6>
+                            <hr>
+                            <h6 class="badge text-dark bg-secondary">criado em {{pessoa.created_at | date: 'dd/MMM/YYYY h:m'}}</h6>
+                            <div class="btn btn-group" style="float:right">
+                                <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#editarPessoa"><i class="fa fa-edit"></i></button>
+                                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deletarPessoa"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-modal-confirmar
+    modalName="deletarPessoa"
+    title="Eliminar Dados da Pessoa"
+    message="Tens a certeza que desejas eliminar este registro?"
+    (event)="deletar(pessoa.id)"
+>
+</app-modal-confirmar>
+
+<app-pessoa-create-or-update
+  target="editarPessoa"
+  title="Editar dados da Pessoa"
+  [pessoa]="pessoa"
+  (event)="gotoHome()"
+>
+</app-pessoa-create-or-update>

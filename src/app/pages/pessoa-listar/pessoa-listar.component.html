@@ -1,0 +1,25 @@
+<div *ngIf="!this.pessoaService.loading">
+    <div class="row" *ngFor="let pessoa of pessoas">
+        <div class="col-md-8 m-auto">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-2"><i class="fa fa-user fa-4x"></i></div>
+                        <div class="col-sm-10 ml-2">
+                            <h5 class="card-title">Nome: <i>{{pessoa.nome}}</i></h5>
+                            <hr>
+                            <h6>Profissão: <span class="text-success">{{ pessoa.profissao.descricao }}</span></h6> 
+                            <button type="button" class="btn btn-sm btn-info" style="float:right" (click)="redirectToDetail(pessoa.id)">Ver mais...</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-8 m-auto">
+            <ngb-pagination *ngIf="pessoas.length > 0" [(page)]="pagination.page" [pageSize]="pagination.perPage" [collectionSize]="pagination.total"></ngb-pagination>
+        </div>
+    </div>
+</div>
