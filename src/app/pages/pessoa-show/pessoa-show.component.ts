@@ -40,8 +40,4 @@ export class PessoaShowComponent implements OnInit {
     })
   }
 
-  public gotoHome() {
-    this.route.navigate(['pessoas'])
-  }
-
 }
